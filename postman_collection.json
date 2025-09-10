@@ -1,166 +1,506 @@
 {
 	"info": {
-		"_postman_id": "YOUR_COLLECTION_ID",
+		"_postman_id": "<GENERATE_NEW_UUID>",
 		"name": "File Upload API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_collection_id": "YOUR_COLLECTION_ID"
+		"_collection_id": "<GENERATE_NEW_UUID>"
 	},
 	"item": [
 		{
-			"name": "Upload Image",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "image",
-							"type": "file",
-							"src": "/path/to/your/image.jpg"
-						}
-					]
+			"name": "Local File Operations",
+			"item": [
+				{
+					"name": "Upload Image (Local)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/path/to/your/image.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/upload/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"upload",
+								"image"
+							]
+						},
+						"description": "Uploads an image file to local storage. Replace /path/to/your/image.jpg with the actual path to your image file."
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/upload/image",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"upload",
-						"image"
-					]
+				{
+					"name": "Upload File (Local)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/file.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/upload/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"upload",
+								"file"
+							]
+						},
+						"description": "Uploads a general file to local storage. Replace /path/to/your/file.txt with the actual path to your file."
+					},
+					"response": []
 				},
-				"description": "Uploads an image file. Replace /path/to/your/image.jpg with the actual path to your image file."
-			},
-			"response": []
+				{
+					"name": "Read File (Local)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/file/:filename",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"file",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "YOUR_FILENAME_HERE.jpg",
+									"description": "Replace with the actual filename (e.g., 1678888888888-myimage.jpg or 1678888888888-mydocument.txt)"
+								}
+							]
+						},
+						"description": "Reads and serves a file from local storage. Replace :filename with the actual filename of the uploaded file."
+					},
+					"response": []
+				},
+				{
+					"name": "Update File (Local)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/new_file.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/file/:filename",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"file",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "YOUR_FILENAME_HERE.txt",
+									"description": "Replace with the actual filename of the file to update."
+								}
+							]
+						},
+						"description": "Updates an existing file in local storage. Replace :filename with the actual filename and provide the new file content."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete File (Local)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/file/:filename",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"file",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "YOUR_FILENAME_HERE.txt",
+									"description": "Replace with the actual filename of the file to delete."
+								}
+							]
+						},
+						"description": "Deletes a file from local storage. Replace :filename with the actual filename of the file to delete."
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Upload File",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/path/to/your/file.txt"
-						}
-					]
+			"name": "Google Drive Operations",
+			"item": [
+				{
+					"name": "Upload Image (Drive)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/path/to/your/image.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/drive/upload/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"upload",
+								"image"
+							]
+						},
+						"description": "Uploads an image file to Google Drive and makes it publicly accessible. Replace /path/to/your/image.jpg with the actual path to your image file."
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/upload/file",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"upload",
-						"file"
-					]
+				{
+					"name": "Upload File (Drive)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/file.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/drive/upload/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"upload",
+								"file"
+							]
+						},
+						"description": "Uploads a general file to Google Drive and makes it publicly accessible. Replace /path/to/your/file.txt with the actual path to your file."
+					},
+					"response": []
 				},
-				"description": "Uploads a general file. Replace /path/to/your/file.txt with the actual path to your file."
-			},
-			"response": []
-		},
-		{
-			"name": "Read File",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/file/:filename",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"file",
-						":filename"
-					],
-					"variable": [
-						{
-							"key": "filename",
-							"value": "YOUR_FILENAME_HERE.jpg",
-							"description": "Replace with the actual filename (e.g., 1678888888888-myimage.jpg or 1678888888888-mydocument.txt)"
-						}
-					]
+				{
+					"name": "Read File (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/file/:fileId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"file",
+								":fileId"
+							],
+							"variable": [
+								{
+									"key": "fileId",
+									"value": "YOUR_FILE_ID_HERE",
+									"description": "Replace with the actual Google Drive File ID."
+								}
+							]
+						},
+						"description": "Downloads a file from Google Drive. Replace :fileId with the actual Google Drive File ID."
+					},
+					"response": []
 				},
-				"description": "Reads and serves a file. Replace :filename with the actual filename of the uploaded file."
-			},
-			"response": []
-		},
-		{
-			"name": "Update File",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/path/to/your/new_file.txt"
-						}
-					]
+				{
+					"name": "Get File Metadata (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/drive/file/metadata/:fileId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"file",
+								"metadata",
+								":fileId"
+							],
+							"variable": [
+								{
+									"key": "fileId",
+									"value": "YOUR_FILE_ID_HERE",
+									"description": "Replace with the actual Google Drive File ID."
+								}
+							]
+						},
+						"description": "Retrieves metadata (id, name, mimeType, webViewLink, webContentLink, parents) for a file from Google Drive. The 'publicDownloadLink' provides a direct public URI in the format 'https://drive.google.com/uc?id=FILE_ID', suitable for HTML <img> tags or direct downloads."
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/file/:filename",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"file",
-						":filename"
-					],
-					"variable": [
-						{
-							"key": "filename",
-							"value": "YOUR_FILENAME_HERE.txt",
-							"description": "Replace with the actual filename of the file to update."
-						}
-					]
+				{
+					"name": "Update File (Drive)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/your/new_file.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/drive/file/:fileId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"file",
+								":fileId"
+							],
+							"variable": [
+								{
+									"key": "fileId",
+									"value": "YOUR_FILE_ID_HERE",
+									"description": "Replace with the actual Google Drive File ID."
+								}
+							]
+						},
+						"description": "Updates an existing file in Google Drive. Replace :fileId with the actual Google Drive File ID and provide the new file content."
+					},
+					"response": []
 				},
-				"description": "Updates an existing file. Replace :filename with the actual filename and provide the new file content. Note: Multer will save the new file with a new name, and the server will rename it to match the original filename."
-			},
-			"response": []
-		},
-		{
-			"name": "Delete File",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/file/:filename",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"file",
-						":filename"
-					],
-					"variable": [
-						{
-							"key": "filename",
-							"value": "YOUR_FILENAME_HERE.txt",
-							"description": "Replace with the actual filename of the file to delete."
-						}
-					]
+				{
+					"name": "Delete File (Drive)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/file/:fileId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"file",
+								":fileId"
+							],
+							"variable": [
+								{
+									"key": "fileId",
+									"value": "YOUR_FILE_ID_HERE",
+									"description": "Replace with the actual Google Drive File ID."
+								}
+							]
+						},
+						"description": "Deletes a file from Google Drive. Replace :fileId with the actual Google Drive File ID."
+					},
+					"response": []
 				},
-				"description": "Deletes a file. Replace :filename with the actual filename of the file to delete."
-			},
-			"response": []
+				{
+					"name": "Search File (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/search/:fileName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"search",
+								":fileName"
+							],
+							"variable": [
+								{
+									"key": "fileName",
+									"value": "YOUR_FILE_NAME_HERE",
+									"description": "Replace with the actual file name or part of the file name to search for."
+								}
+							]
+						},
+						"description": "Searches for files in Google Drive by name. Replace :fileName with the actual file name or part of the file name."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Files (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"files"
+							]
+						},
+						"description": "Retrieves a list of all files (excluding folders) from Google Drive."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Folders (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/folders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"folders"
+							]
+						},
+						"description": "Retrieves a list of all folders from Google Drive."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Folder (Drive)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"folderName\": \"My New Folder\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+						"url": {
+							"raw": "http://localhost:3000/drive/folder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"folder"
+							]
+						},
+						"description": "Creates a new folder in Google Drive. Provide 'folderName' in the request body. Optionally, provide 'parentId' to create it within a specific folder."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Folder (Drive)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/folder/:folderId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"folder",
+								":folderId"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "YOUR_FOLDER_ID_HERE",
+									"description": "Replace with the actual Google Drive Folder ID to delete."
+								}
+							]
+						},
+						"description": "Deletes a folder from Google Drive. Replace :folderId with the actual Google Drive Folder ID."
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
