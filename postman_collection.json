@@ -182,6 +182,11 @@
 									"key": "image",
 									"type": "file",
 									"src": "/path/to/your/image.jpg"
+								},
+								{
+									"key": "folderId",
+									"value": "YOUR_FOLDER_ID_HERE (optional)",
+									"type": "text"
 								}
 							]
 						},
@@ -214,6 +219,11 @@
 									"key": "file",
 									"type": "file",
 									"src": "/path/to/your/file.txt"
+								},
+								{
+									"key": "folderId",
+									"value": "YOUR_FOLDER_ID_HERE (optional)",
+									"type": "text"
 								}
 							]
 						},
@@ -442,6 +452,36 @@
 					"response": []
 				},
 				{
+					"name": "Get Files in Folder (Drive)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/drive/folder/:folderId/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"drive",
+								"folder",
+								":folderId",
+								"files"
+							],
+							"variable": [
+								{
+									"key": "folderId",
+									"value": "YOUR_FOLDER_ID_HERE",
+									"description": "Replace with the actual Google Drive Folder ID."
+								}
+							]
+						},
+						"description": "Retrieves a list of all files in a specific folder from Google Drive."
+					},
+					"response": []
+				},
+				{
 					"name": "Create Folder (Drive)",
 					"request": {
 						"method": "POST",
@@ -504,3 +544,4 @@
 		}
 	]
 }
+

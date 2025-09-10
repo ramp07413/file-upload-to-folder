@@ -195,6 +195,19 @@ async function getAllFoldersFromDrive() {
     }
 }
 
+async function getFilesInFolderFromDrive(folderId) {
+    try {
+        const response = await drive.files.list({
+            q: `'${folderId}' in parents and mimeType != 'application/vnd.google-apps.folder'`,
+            fields: 'files(id, name, mimeType, webViewLink, webContentLink)'
+        });
+        return response.data.files;
+    } catch (error) {
+        console.error('Error getting files in folder from Drive:', error);
+        throw error;
+    }
+}
+
 async function createFolderInDrive(folderName, parentId = null) {
     try {
         const fileMetadata = {
@@ -233,7 +246,8 @@ app.post('/drive/upload/image', upload.single('image'), async (req, res) => {
         return res.status(400).send('No image uploaded.');
     }
     try {
-        const result = await uploadFileToDrive(req.file, req.file.mimetype);
+        const { folderId } = req.body;
+        const result = await uploadFileToDrive(req.file, req.file.mimetype, folderId);
         res.status(200).json({ message: 'Image uploaded to Drive successfully', file: result });
     } catch (error) {
         res.status(500).send('Failed to upload image to Drive.');
@@ -245,7 +259,8 @@ app.post('/drive/upload/file', upload.single('file'), async (req, res) => {
         return res.status(400).send('No file uploaded.');
     }
     try {
-        const result = await uploadFileToDrive(req.file, req.file.mimetype);
+        const { folderId } = req.body;
+        const result = await uploadFileToDrive(req.file, req.file.mimetype, folderId);
         res.status(200).json({ message: 'File uploaded to Drive successfully', file: result });
     } catch (error) {
         res.status(500).send('Failed to upload file to Drive.');
@@ -318,6 +333,15 @@ app.get('/drive/folders', async (req, res) => {
         res.status(200).json({ folders: folders });
     } catch (error) {
         res.status(500).send('Failed to get all folders from Drive.');
+    }
+});
+
+app.get('/drive/folder/:folderId/files', async (req, res) => {
+    try {
+        const files = await getFilesInFolderFromDrive(req.params.folderId);
+        res.status(200).json({ files: files });
+    } catch (error) {
+        res.status(500).send('Failed to get files in folder from Drive.');
     }
 });
 
